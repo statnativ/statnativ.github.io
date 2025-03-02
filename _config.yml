@@ -14,12 +14,20 @@ timezone: Asia/Kolkata
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: AI Insights # the main title
+title: The Intersection of AI, Development, and Design # the main title
 
-tagline: Your Daily dose of AI # it will display as the subtitle
+tagline: Embrace AI, It's Not the Future, It's Here and Now # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Welcome to statnativ – Exploring the Intersection of AI, Development, and Architecture.At statnativ, we dive deep into the transformative world of artificial intelligence (AI) and its profound impact on the fields of development and architecture. Our blog brings together the latest advancements in AI technologies, software development practices, and cutting-edge architectural design to help you understand how these fields are converging to shape the cities and innovations of tomorrow.
+Whether you're a developer, architect, or simply an enthusiast of emerging technologies, our blog offers insights into how AI is revolutionizing architectural design, urban planning, construction, and software development. From AI-driven design tools and automation in construction to intelligent systems that optimize building performance, we cover it all.
+What You’ll Find Here-
+AI in Architecture Discover how AI is transforming architectural practices, from generative design to smart buildings, and how it helps create sustainable, efficient, and futuristic spaces.
+Software Development- Stay updated on the latest trends and tools in software development that power AI technologies, with insights into coding, programming languages, and frameworks.
+AI Integration in Development- Explore how AI can optimize development workflows, from machine learning models to automation in testing and deployment.
+Innovative Design Solutions- Learn about the role of AI in enhancing creative and practical design solutions for urban landscapes, infrastructure, and architectural aesthetics.
+Trends & Case Studies- Dive into real-world case studies that showcase how AI is being integrated into the architecture and development industries, with a focus on best practices and practical applications.
+Join us on a journey to explore the future of AI, development, and architecture. At Statnativ, we believe the future is now, and AI is at the forefront of reshaping how we build and innovate. Stay informed, stay inspired, and be part of the evolution.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
