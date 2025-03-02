@@ -4,6 +4,7 @@ title: Transformers
 date: 2024-01-02 12:00:00
 categories:[AI, Text Processing]
 tags: [ML, AI, GenAI]
+author: "Dev"
 ---
 
 ![Attention Research](assets/images/attention_research.png)
