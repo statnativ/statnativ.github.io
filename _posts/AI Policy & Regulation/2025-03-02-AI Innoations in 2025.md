@@ -1,3 +1,11 @@
+---
+title: Transformers
+date: 2024-01-02 12:00:00
+categories:[AI, Text Processing]
+tags: [ML, AI, GenAI]
+author: "Dev"
+---
+
 # AI Innovations & Breakthroughs in 2025
 
 The artificial intelligence landscape has evolved dramatically in the first few months of 2025, building on the momentum from previous years while introducing new capabilities that are reshaping industries and everyday experiences.
