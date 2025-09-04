@@ -7,7 +7,7 @@ tags: [ML, AI, GenAI]
 author: "Dev"
 ---
 
-![Attention Research](assets/images/attention_research.png)
+![Attention Research](/assets/images/attention_research.png)
 
 
 ***Text Generation with Transformers: Fine-Tuning for Specific Tasks***
