@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://statnativ.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://statnativ.com/" rel="alternate" type="text/html" /><updated>2025-09-04T21:49:25+05:30</updated><id>https://statnativ.com/feed.xml</id><title type="html">Statnativ</title><subtitle>Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.</subtitle><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><entry><title type="html">Ai innovations in 2025</title><link href="https://statnativ.com/AI-Innovations-in-2025/" rel="alternate" type="text/html" title="Ai innovations in 2025" /><published>2025-03-02T00:00:00+05:30</published><updated>2025-03-02T00:00:00+05:30</updated><id>https://statnativ.com/AI%20Innovations%20in%202025</id><content type="html" xml:base="https://statnativ.com/AI-Innovations-in-2025/"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://statnativ.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://statnativ.com/" rel="alternate" type="text/html" /><updated>2025-09-04T22:29:56+05:30</updated><id>https://statnativ.com/feed.xml</id><title type="html">Statnativ</title><subtitle>Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.</subtitle><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><entry><title type="html">Ai innovations in 2025</title><link href="https://statnativ.com/AI-Innovations-in-2025/" rel="alternate" type="text/html" title="Ai innovations in 2025" /><published>2025-03-02T00:00:00+05:30</published><updated>2025-03-02T00:00:00+05:30</updated><id>https://statnativ.com/AI%20Innovations%20in%202025</id><content type="html" xml:base="https://statnativ.com/AI-Innovations-in-2025/"><![CDATA[<hr />
 <p>title: Quantization
 date: 2024-01-02 12:00:00
 categories:[AI, Text Processing, Quantization]
@@ -107,7 +107,7 @@ tags: [ML, AI, GenAI]
 author: “Dev”
 —</p>
 
-<p><img src="assets/images/attention_research.png" alt="Attention Research" /></p>
+<p><img src="/assets/images/attention_research.png" alt="Attention Research" /></p>
 
 <p><strong><em>Text Generation with Transformers: Fine-Tuning for Specific Tasks</em></strong></p>
 
