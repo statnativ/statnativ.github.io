@@ -107,7 +107,7 @@ author_profile: true
 
   <!-- Agentic AI Category Card - Updated to fix HTMLProofer validation -->
   <a href="/categories/agentic-ai" class="category-card">
-    <img src="/assets/images/categories/agentic-ai.jpg" alt="Agentic AI">
+    <img src="/assets/images/categories/agenticai.jpg" alt="Agentic AI">
     <div class="category-name">Agentic AI</div>
   </a>
 
