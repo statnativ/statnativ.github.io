@@ -89,7 +89,7 @@ author_profile: true
 
   <!-- RAG & Agentic AI Category Card -->
   <a href="/categories/rag-agents" class="category-card">
-    <img src="/assets/images/categories/rag.jpg" alt="RAG & Agentic AI">
+    <img src="/assets/images/categories/rag.jpg" alt="Retrieval-Augmented Generation">
     <div class="category-name">Retrieval-Augmented Generation</div>
   </a>
 
@@ -106,9 +106,9 @@ author_profile: true
   </a>
 
   <!-- Agentic AI Category Card - Updated to fix HTMLProofer validation -->
-  <a href="/categories/agentic-ai" class="category-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    <div style="font-size: 4rem; margin: 2rem 0;">🤖</div>
-    <div class="category-name" style="color: white;">Agentic AI</div>
+  <a href="/categories/agentic-ai" class="category-card">
+    <img src="/assets/images/categories/agentic-ai.jpg" alt="Agentic AI">
+    <div class="category-name">Agentic AI</div>
   </a>
 
 </div>
