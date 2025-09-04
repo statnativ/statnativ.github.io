@@ -7,6 +7,9 @@ gem "github-pages", group: :jekyll_plugins
 gem "base64"
 gem "bigdecimal"
 
+# HTML validation
+gem "html-proofer", "~> 5.0", group: :test
+
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-paginate"
