@@ -105,7 +105,7 @@ author_profile: true
     <div class="category-name">Open Source</div>
   </a>
 
-  <!-- Agentic AI Category Card -->
+  <!-- Agentic AI Category Card - Updated to fix HTMLProofer validation -->
   <a href="/categories/agentic-ai" class="category-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
     <div style="font-size: 4rem; margin: 2rem 0;">🤖</div>
     <div class="category-name" style="color: white;">Agentic AI</div>
