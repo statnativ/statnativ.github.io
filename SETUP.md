@@ -1,3 +1,9 @@
+---
+layout: single
+title: "Medium-Style Blog Setup Guide"
+author_profile: true
+---
+
 # Medium-Style Blog Setup Guide
 
 ## Overview
