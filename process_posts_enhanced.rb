@@ -13,7 +13,7 @@ PAGES_DIR = '_pages'
 FileUtils.mkdir_p(POSTS_DIR)
 FileUtils.mkdir_p(PAGES_DIR)
 
-def process_markdown_files(interactive = false, push_to_github = false)
+def process_markdown_files(interactive = false, push_to_github = false, skip_validation = false, fix_issues = false)
   unless Dir.exist?(TOBEPROCESSED_DIR)
     puts "#{TOBEPROCESSED_DIR} directory not found!"
     return
@@ -36,9 +36,29 @@ def process_markdown_files(interactive = false, push_to_github = false)
   puts "Updating tag and category pages..."
   update_tag_and_category_pages
   
+  if fix_issues
+    fix_common_validation_issues
+  end
+  
   if push_to_github && !processed_files.empty?
-    puts "\n🚀 Pushing to GitHub..."
-    push_to_github_repo(processed_files)
+    if skip_validation
+      puts "\n⚠️  Skipping validation (--skip-validation flag used)"
+      puts "🚀 Pushing to GitHub..."
+      push_to_github_repo(processed_files)
+    else
+      puts "\n🔍 Running validation checks..."
+      if run_validation_checks
+        puts "\n🚀 Pushing to GitHub..."
+        push_to_github_repo(processed_files)
+      else
+        puts "\n❌ Validation failed. Please fix errors before pushing."
+        puts "💡 Options:"
+        puts "   - Fix errors and try again"
+        puts "   - Use --skip-validation to bypass validation"
+        puts "   - Use --fix-issues to auto-fix common problems"
+        puts "   - Run validation manually: bundle exec htmlproofer _site"
+      end
+    end
   end
 end
 
@@ -399,6 +419,135 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
   end
 end
 
+def run_validation_checks
+  puts "🏗️  Building site for validation..."
+  
+  # Build the site first
+  build_result = system('bundle exec jekyll build --quiet')
+  unless build_result
+    puts "❌ Jekyll build failed"
+    return false
+  end
+  
+  puts "✅ Site built successfully"
+  
+  # Check if HTMLProofer is available and working
+  puts "🔍 Checking HTMLProofer availability..."
+  htmlproofer_available = system('bundle exec htmlproofer --version >NUL 2>&1')
+  
+  if !htmlproofer_available
+    puts "⚠️  HTMLProofer not available or not working (common on Windows)"
+    puts "🔍 Running basic validation checks instead..."
+    return run_basic_validation_checks
+  end
+  
+  puts "🔍 Running HTMLProofer validation..."
+  
+  # Run HTMLProofer with appropriate options
+  proofer_cmd = 'bundle exec htmlproofer _site --disable-external --check-html --check-img-http --allow-hash-href --log-level :warn'
+  proofer_result = system(proofer_cmd)
+  
+  if proofer_result
+    puts "✅ HTML validation passed"
+    return true
+  else
+    puts "❌ HTML validation failed"
+    puts "💡 Fix validation errors or use --skip-validation flag"
+    return false
+  end
+end
+
+def run_basic_validation_checks
+  puts "🔍 Running basic HTML validation checks..."
+  
+  validation_passed = true
+  issues_found = []
+  
+  # Check for missing images referenced in HTML
+  if Dir.exist?('_site')
+    puts "📋 Checking for missing images..."
+    html_files = Dir.glob('_site/**/*.html')
+    
+    html_files.each do |html_file|
+      content = File.read(html_file)
+      
+      # Find image references
+      img_matches = content.scan(/src="([^"]+\.(jpg|jpeg|png|gif|svg))"/)
+      img_matches.each do |match|
+        img_path = match[0]
+        if img_path.start_with?('/')
+          full_img_path = "_site#{img_path}"
+          unless File.exist?(full_img_path)
+            issues_found << "Missing image: #{img_path} (referenced in #{html_file})"
+            validation_passed = false
+          end
+        end
+      end
+    end
+    
+    # Check for broken internal links (basic check)
+    puts "📋 Checking for basic internal link issues..."
+    html_files.each do |html_file|
+      content = File.read(html_file)
+      
+      # Look for obvious issues like links to processed folders
+      if content.include?('/Tobeprocessed/processed/')
+        issues_found << "Found link to processed folder in #{html_file}"
+        validation_passed = false
+      end
+    end
+  end
+  
+  if validation_passed
+    puts "✅ Basic validation checks passed"
+  else
+    puts "❌ Validation issues found:"
+    issues_found.each { |issue| puts "  - #{issue}" }
+    puts "💡 Run with --fix-issues to attempt automatic fixes"
+  end
+  
+  validation_passed
+end
+
+def fix_common_validation_issues
+  puts "🔧 Attempting to fix common validation issues..."
+  
+  # Fix missing finetuning image
+  finetuning_image_path = 'assets/images/categories/finetuning.jpg'
+  unless File.exist?(finetuning_image_path)
+    puts "⚠️  Missing image: #{finetuning_image_path}"
+    # Copy from another category image as placeholder
+    if File.exist?('assets/images/categories/system-design.jpg')
+      FileUtils.cp('assets/images/categories/system-design.jpg', finetuning_image_path)
+      puts "✅ Created placeholder for #{finetuning_image_path}"
+    end
+  end
+  
+  # Remove processed files from _site that shouldn't be there
+  processed_site_dir = '_site/Tobeprocessed/processed'
+  if Dir.exist?(processed_site_dir)
+    puts "🗑️  Cleaning up processed files from _site..."
+    FileUtils.rm_rf(processed_site_dir)
+    puts "✅ Removed #{processed_site_dir}"
+  end
+  
+  # Clean up any other unwanted files in _site
+  unwanted_patterns = [
+    '_site/Tobeprocessed',
+    '_site/hsnw.md',
+    '_site/process_posts*.rb'
+  ]
+  
+  unwanted_patterns.each do |pattern|
+    Dir.glob(pattern).each do |path|
+      if File.exist?(path) || Dir.exist?(path)
+        FileUtils.rm_rf(path)
+        puts "✅ Cleaned up #{path}"
+      end
+    end
+  end
+end
+
 def check_git_setup
   # Check if git is available (Windows compatible)
   git_version = `git --version 2>NUL`.strip
@@ -442,10 +591,13 @@ def show_help
       ruby process_posts_enhanced.rb [options]
     
     Options:
-      -i, --interactive    Ask for metadata input interactively
-      -p, --push          Push processed posts to GitHub automatically
-      -g, --git-check     Check git setup and remote configuration
-      -h, --help          Show this help message
+      -i, --interactive      Ask for metadata input interactively
+      -p, --push            Push processed posts to GitHub automatically
+      -g, --git-check       Check git setup and remote configuration
+      -s, --skip-validation Skip HTML validation before pushing
+      -f, --fix-issues      Auto-fix common validation issues
+      -v, --validate        Run HTML validation only (no processing)
+      -h, --help            Show this help message
     
     The script will:
     1. Process all .md files in the Tobeprocessed folder
@@ -453,11 +605,12 @@ def show_help
     3. Create properly formatted Jekyll posts
     4. Update tag and category systems
     5. Move processed files to Tobeprocessed/processed/
-    6. Optionally commit and push to GitHub (with -p flag)
+    6. Run HTML validation (HTMLProofer) if pushing
+    7. Optionally commit and push to GitHub (with -p flag)
     
     Required metadata for each post:
     - Title (extracted from H1 or filename if not provided)
-    - Date (current date if not provided)
+    - Date (current date if not provided)  
     - Categories (defaults to 'uncategorized')
     - Tags (optional but recommended)
     - GitHub repo (optional)
@@ -466,7 +619,9 @@ def show_help
       ruby process_posts_enhanced.rb                    # Process files automatically
       ruby process_posts_enhanced.rb -i                 # Interactive mode
       ruby process_posts_enhanced.rb -p                 # Process and push to GitHub
-      ruby process_posts_enhanced.rb -i -p              # Interactive mode + GitHub push
+      ruby process_posts_enhanced.rb -p -s              # Process and push (skip validation)
+      ruby process_posts_enhanced.rb -f -p              # Fix issues and push
+      ruby process_posts_enhanced.rb -v                 # Validate HTML only
       ruby process_posts_enhanced.rb -g                 # Check git setup
   HELP
 end
@@ -476,6 +631,9 @@ if __FILE__ == $0
   interactive = ARGV.include?('-i') || ARGV.include?('--interactive')
   push_to_github = ARGV.include?('-p') || ARGV.include?('--push')
   git_check = ARGV.include?('-g') || ARGV.include?('--git-check')
+  skip_validation = ARGV.include?('-s') || ARGV.include?('--skip-validation')
+  fix_issues = ARGV.include?('-f') || ARGV.include?('--fix-issues')
+  validate_only = ARGV.include?('-v') || ARGV.include?('--validate')
   
   if ARGV.include?('-h') || ARGV.include?('--help')
     show_help
@@ -484,6 +642,16 @@ if __FILE__ == $0
     puts "========================================"
     puts
     check_git_setup
+  elsif validate_only
+    puts "Jekyll Post Processor - HTML Validation"
+    puts "========================================"
+    puts
+    if run_validation_checks
+      puts "✅ Validation passed"
+    else
+      puts "❌ Validation failed"
+      exit 1
+    end
   else
     puts "Jekyll Post Processor for StatNativ Blog"
     puts "========================================="
@@ -509,9 +677,18 @@ if __FILE__ == $0
     
     if push_to_github
       puts "🚀 GITHUB PUSH enabled - processed posts will be committed and pushed"
+      if skip_validation
+        puts "⚠️  HTML validation will be SKIPPED"
+      else
+        puts "🔍 HTML validation will be performed before push"
+      end
+    end
+    
+    if fix_issues
+      puts "🔧 Auto-fix mode enabled for common validation issues"
     end
     puts
     
-    process_markdown_files(interactive, push_to_github)
+    process_markdown_files(interactive, push_to_github, skip_validation, fix_issues)
   end
 end

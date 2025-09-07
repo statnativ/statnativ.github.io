@@ -142,6 +142,9 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - Tobeprocessed # ignore blog processing folder
+  - process_posts*.rb # ignore processing scripts
+  - hsnw.md # ignore temp files
 keep_files:
   - .git
   - .svn

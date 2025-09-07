@@ -5,6 +5,12 @@ var store = [{
         "url": "/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/",
         "teaser": null
       },{
+        "title": "Testing Enhanced Jekyll Script with GitHub Push",
+        "excerpt":"Test GitHub Push Feature This is a test blog post to demonstrate the enhanced Jekyll processing script with automatic GitHub push functionality. Features Tested ✅ Automatic metadata extraction from custom format ✅ Jekyll frontmatter generation with proper YAML structure ✅ Tag and category organization for better navigation ✅ GitHub integration...","categories": ["automation","blogging"],
+        "tags": ["jekyll","github","automation","claude-code"],
+        "url": "/automation/blogging/testing-enhanced-jekyll-script-with-github-push/",
+        "teaser": null
+      },{
         "title": "Transformers",
         "excerpt":"title: Transformers date: 2024-01-02 12:00:00 categories:[AI, Text Processing] tags: [ML, AI, GenAI] author: “Dev” — Text Generation with Transformers: Fine-Tuning for Specific Tasks Transformers have revolutionized Natural Language Processing (NLP), achieving state-of-the-art results in various tasks, including text generation. Unlike recurrent neural networks (RNNs), transformers process entire sequences in parallel,...","categories": [],
         "tags": [],
