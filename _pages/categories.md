@@ -67,7 +67,7 @@ author_profile: true
 
 <h1>Explore Categories</h1>
 
-<div class="categories-grid">
+<div class="categories-grid" id="categories-grid">
 
   <!-- AI Fundamentals Category Card -->
   <a href="/categories/ai-fundamentals" class="category-card">
@@ -114,6 +114,11 @@ author_profile: true
   <a href="/categories/finetuning" class="category-card">
     <img src="/assets/images/categories/finetuning.jpg" alt="Finetuning">
     <div class="category-name">Finetuning</div>
+  </a>
+
+  <a href="/categories/machine-learning" class="category-card" id="machine-learning">
+    <img src="/assets/images/categories/system-design.jpg" alt="Machine Learning">
+    <div class="category-name">Machine Learning</div>
   </a>
 
 </div>
