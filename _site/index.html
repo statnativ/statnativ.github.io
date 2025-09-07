@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Statnativ">
 <meta property="og:title" content="Statnativ">
-<meta property="og:url" content="https://statnativ.com/">
+<meta property="og:url" content="http://localhost:4000/">
 
 
   <meta property="og:description" content="Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.">
@@ -33,7 +33,7 @@
   <meta name="twitter:site" content="@statnativ">
   <meta name="twitter:title" content="Statnativ">
   <meta name="twitter:description" content="Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.">
-  <meta name="twitter:url" content="https://statnativ.com/">
+  <meta name="twitter:url" content="http://localhost:4000/">
 
   
     <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   
 
 
-<link rel="canonical" href="https://statnativ.com/">
+<link rel="canonical" href="http://localhost:4000/">
 
 
 
@@ -64,7 +64,7 @@
     
       "@type": "Person",
       "name": "Amit Tiwari",
-      "url": "https://statnativ.com/",
+      "url": "http://localhost:4000/",
       "sameAs": ["https://www.linkedin.com/in/amit-tiwari-77576248/","https://twitter.com/statnativ","https://github.com/statnativ"]
     
   }
@@ -97,12 +97,267 @@
 
 
 
-    <!-- start custom head snippets -->
+    <style>
+/* Custom CSS overrides for full width layout */
 
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
+/* AGGRESSIVE FULL WIDTH OVERRIDES - Remove sidebars on POSTS ONLY */
+.layout--single .sidebar__right, 
+.layout--single .sidebar__left, 
+.layout--single .sidebar {
+  display: none !important;
+}
 
-<!-- end custom head snippets -->
+/* Remove sticky/fixed positioning that causes disconnect on POSTS */
+.layout--single .sticky, 
+.layout--single .sidebar__right.sticky {
+  position: static !important;
+  display: none !important;
+}
 
+/* Keep author profile ONLY on homepage, hide on individual posts */
+.layout--single .author__avatar, 
+.layout--single .author__content,
+.layout--single .author__urls, 
+.layout--single .author__bio, 
+.layout--single .author__name {
+  display: none !important;
+}
+
+/* Override the default max-width constraints */
+.page {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page__content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 2rem !important;
+  float: none !important;
+}
+
+/* Ensure the main wrapper uses full width */
+.wrapper {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* Override container widths */
+.container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Override main content area */
+#main {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  float: none !important;
+}
+
+/* Fix layout disconnection - ensure proper flow */
+.initial-content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Fix masthead/banner positioning */
+.masthead {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 20 !important;
+}
+
+/* Force content to use full width */
+article.page {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove any left/right margins that create "blank panels" */
+.page__inner-wrap {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 2rem !important;
+}
+
+/* Override any theme-specific width constraints for wide layouts */
+.layout--single.wide .page {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.layout--single.wide .page__content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 2rem !important;
+  float: none !important;
+}
+
+/* Override masthead to use full width too */
+.masthead {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.masthead__inner-wrap {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 1em 2rem !important;
+}
+
+/* Responsive adjustments */
+@media (min-width: 80em) {
+  .page, .page__content, .page__inner-wrap {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .page__content, .page__inner-wrap {
+    padding: 0 2rem !important;
+  }
+}
+
+@media (min-width: 64em) {
+  .page, .page__content {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .page__content {
+    padding: 0 2rem !important;
+  }
+}
+
+/* Additional overrides for any missed containers */
+.initial-content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.archive {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Fix body and html to ensure proper page flow */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Ensure no floating elements cause layout issues */
+.page, .page__content, #main, .initial-content {
+  clear: both !important;
+  float: none !important;
+  display: block !important;
+}
+
+/* Fix any grid or flexbox layout issues */
+.layout--single {
+  display: block !important;
+}
+
+/* Make newsletter section smaller and more compact - override inline styles */
+div.newsletter-section[style] {
+  padding: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.newsletter-section h2[style] {
+  font-size: 1.4rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.newsletter-section p[style] {
+  font-size: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.newsletter-section form[style] {
+  max-width: 350px !important;
+  gap: 0.5rem !important;
+}
+
+.newsletter-section input[style] {
+  min-width: 200px !important;
+  padding: 0.75rem 1rem !important;
+}
+
+.newsletter-section button[style] {
+  padding: 0.75rem 1.25rem !important;
+}
+
+/* Author & Newsletter Two-Column Layout */
+.author-newsletter-section {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2rem !important;
+  margin-bottom: 3rem !important;
+}
+
+/* Author Profile Styling */
+.author-profile-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.author-social-links a:hover {
+  background: #0056b3 !important;
+  transform: translateY(-1px);
+}
+
+/* Newsletter Section Styling */
+.newsletter-section:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .author-newsletter-section {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .author-social-links {
+    justify-content: center !important;
+    gap: 0.75rem !important;
+  }
+  
+  .author-social-links a {
+    flex: 1 1 calc(50% - 0.5rem) !important;
+    max-width: 140px !important;
+    justify-content: center !important;
+  }
+}
+</style>
   </head>
 
   <body class="layout--single wide">
@@ -412,22 +667,76 @@
       </div>
     </div>
 
-    <!-- Newsletter Section -->
-    <div class="newsletter-section"
-      style="background: #007bff; color: white; padding: 3rem; text-align: center; border-radius: 1rem; margin-bottom: 3rem;">
-      <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Stay Updated</h2>
-      <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9;">Get daily practical insights on AI & Systems,
-        straight to your inbox.</p>
+    <!-- Author & Newsletter Section -->
+    <div class="author-newsletter-section" 
+      style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; align-items: start;">
+      
+      <!-- Left Column - Author Profile -->
+      <div class="author-profile-section"
+        style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        
+        <!-- Author Avatar -->
+        <div style="margin-bottom: 1.5rem;">
+          <img src="/assets/images/profile.jpg" alt="Amit Tiwari" 
+            style="width: 213px; border-radius: 8px; border: 4px solid #007bff; margin: 0 auto; display: block;">
+        </div>
+        
+        <!-- Author Info -->
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #2c3e50;">Amit Tiwari</h3>
+        <p style="color: #6c757d; margin-bottom: 0.5rem; font-style: italic;">Exploring AI, Systems, and Real-World Product Scaling</p>
+        <p style="color: #6c757d; margin-bottom: 1.5rem; font-size: 0.9rem;">📍 India</p>
+        
+        <!-- Contact Info -->
+        <div style="margin-bottom: 1.5rem;">
+          <p style="color: #2c3e50; font-weight: 600; margin-bottom: 0.5rem;">📧 statnativ@gmail.com</p>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="author-social-links" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          
+          <a href="https://www.linkedin.com/in/amit-tiwari-77576248/" target="_blank" rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #007bff; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i>
+            LinkedIn
+          </a>
+          
+          <a href="https://statnativ.com" target="_blank" rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #007bff; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;">
+            <i class="fas fa-fw fa-link" aria-hidden="true"></i>
+            Website
+          </a>
+          
+          <a href="https://twitter.com/statnativ" target="_blank" rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #007bff; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i>
+            Twitter
+          </a>
+          
+          <a href="https://github.com/statnativ" target="_blank" rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #007bff; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+          
+        </div>
+      </div>
+      
+      <!-- Right Column - Newsletter -->
+      <div class="newsletter-section"
+        style="background: #007bff; color: white; padding: 2rem; text-align: center; border-radius: 1rem;">
+        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem;">Stay Updated</h2>
+        <p style="font-size: 1rem; margin-bottom: 1.5rem; opacity: 0.9; line-height: 1.5;">Get daily practical insights on AI & Systems, straight to your inbox.</p>
 
-      <form
-        style="display: flex; gap: 1rem; max-width: 400px; margin: 0 auto 1rem; flex-wrap: wrap; justify-content: center;">
-        <input type="email" placeholder="Enter your email" required
-          style="flex: 1; min-width: 250px; padding: 1rem 1.25rem; border: none; border-radius: 0.375rem; font-size: 1rem;">
-        <button type="submit"
-          style="background: #fd7e14; color: white; border: none; padding: 1rem 1.5rem; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Subscribe</button>
-      </form>
+        <form
+          style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px; margin: 0 auto 1rem;">
+          <input type="email" placeholder="Enter your email" required
+            style="padding: 0.875rem 1rem; border: none; border-radius: 0.375rem; font-size: 0.95rem; width: 100%;">
+          <button type="submit"
+            style="background: #fd7e14; color: white; border: none; padding: 0.875rem 1rem; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%;">Subscribe</button>
+        </form>
 
-      <p style="font-size: 0.875rem; opacity: 0.8;">No spam. Unsubscribe anytime.</p>
+        <p style="font-size: 0.8rem; opacity: 0.8;">No spam. Unsubscribe anytime.</p>
+      </div>
     </div>
 
   </div>
