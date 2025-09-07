@@ -1,7 +1,7 @@
 
 
 ---
-title: Quantization
+Title: Quantization
 date: 2024-01-02 12:00:00
 categories:[AI, Text Processing, Quantization]
 tags: [ML, AI, GenAI]

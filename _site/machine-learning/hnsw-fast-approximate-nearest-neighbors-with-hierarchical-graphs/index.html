@@ -1,224 +1,295 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-07T23:28:50+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Statnativ</title><subtitle>Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.</subtitle><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><entry><title type="html">Quantization</title><link href="http://localhost:4000/Quantization/" rel="alternate" type="text/html" title="Quantization" /><published>2025-03-02T00:00:00+05:30</published><updated>2025-03-02T00:00:00+05:30</updated><id>http://localhost:4000/Quantization</id><content type="html" xml:base="http://localhost:4000/Quantization/"><![CDATA[<hr />
-<p>Title: Quantization
-date: 2024-01-02 12:00:00
-categories:[AI, Text Processing, Quantization]
-tags: [ML, AI, GenAI]
-author: “Amit Tiwari”
-—</p>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-<p><strong>Quantization</strong> is a technique for reducing the model size by compressing the model weights from a <strong>high-precision</strong> value to a <strong>low-precision</strong> value. The weights of a language model are the vectors that can be represented in different data types based on the availability of computational resources and required precision. The default data type of most of the models is a 32-bit floating number (float32), which means each weight of such models takes 4 bytes of space in the memory.</p>
+<!-- begin _includes/seo.html --><title>HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs - Statnativ</title>
+<meta name="description" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
 
-<p><strong>Quantization</strong> reduces the number of bits required for each weight of the model by changing the data type from a 32-bit floating number (float32), which holds more information, to an 8-bit (int8) or a 4-bit integer (int4), which holds less.</p>
 
-<p>Imagine you’re packing for a trip. You’ve got a big suitcase, and you’re stuffing it with clothes that take up a lot of space—like bulky sweaters and thick jeans. This is like a language model’s weights stored as 32-bit floating numbers (float32): they’re detailed and precise, but they take up a lot of room (4 bytes per weight). Now, suppose you realize you need to fit everything into a smaller bag. You start folding your clothes tighter, swapping out the sweaters for thinner shirts, and squeezing things down to essentials. You lose some of the fluffiness and detail, but you still have functional outfits. That’s quantization—shrinking those weights down to something like 8-bit integers (int8, 1 byte) or even 4-bit integers (int4, half a byte), where they take up way less space but still get the job done.</p>
 
-<p>For example, let’s say a weight in a model is originally a float32 value like 3.14159 (a precise number stored in 4 bytes). After quantization to int8, it might get rounded to 3 (a less precise integer stored in just 1 byte). You lose some granularity—like going from a high-def photo to a slightly pixelated one—but the model can still understand and generate text, just with a smaller memory footprint. This is super useful for running models on devices with limited resources, like phones or edge hardware, where you can’t afford to lug around that big suitcase of float32 weights.</p>
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Statnativ">
+<meta property="og:title" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
+<meta property="og:url" content="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/">
 
-<p>Below is a table which clearly explains how the data changes.</p>
 
-<table>
-  <tbody>
-    <tr>
-    </tr>
-  </tbody>
-</table>
+  <meta property="og:description" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
 
-<p>Matrix (float32):</p>
 
-<p>[ 3.14159, -0.7854 ]<br />
-[ 2.71828, 1.4142 ]</p>
 
-<table>
-  <tbody>
-    <tr>
-    </tr>
-  </tbody>
-</table>
 
-<p>Matrix (float16):</p>
 
-<p>[ 3.1416, -0.7854 ]</p>
+  <meta name="twitter:site" content="@statnativ">
+  <meta name="twitter:title" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
+  <meta name="twitter:description" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
+  <meta name="twitter:url" content="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/">
 
-<p>[ 2.7183,  1.4142 ]</p>
+  
+    <meta name="twitter:card" content="summary">
+    
+  
 
-<table>
-  <tbody>
-    <tr>
-    </tr>
-  </tbody>
-</table>
+  
 
-<p>Matrix (float8):</p>
 
-<p>[ 3.0,   -0.75 ]</p>
 
-<p>[ 2.5,    1.5  ]</p>
+  <meta property="article:published_time" content="2024-02-15T00:00:00+05:30">
 
-<table>
-  <tbody>
-    <tr>
-    </tr>
-    <tr>
-    </tr>
-  </tbody>
-</table>
 
-<p>Matrix (int8):</p>
 
-<p>[ 127,  -50 ]</p>
 
-<p>[ 110,   58 ]</p>
 
-<table>
-  <tbody>
-    <tr>
-    </tr>
-  </tbody>
-</table>
+  
 
-<p>Matrix (int4):</p>
+  
 
-<p>[ 7, -2 ]</p>
 
-<p>[ 6,  3 ]</p>
+<link rel="canonical" href="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/">
 
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
 
-<p><strong>Why use quantization?</strong>[#]
-Quantization is an important technique for fine-tuning and deploying large language models in real-world applications. As the models increase in size and complexity, quantization becomes essential for managing resource consumption without compromising accuracy. The following are some key benefits of using quantization:</p>
 
-<p><strong>Reduced resource consumption:</strong></p>
 
-<p><strong>Fast inference:</strong> Quantization increases the training and inference speed of the model due to less computation and memory required for low-precision weights. This increased speed is beneficial when deploying models in real-time applications.</p>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Amit Tiwari",
+      "url": "http://localhost:4000/",
+      "sameAs": ["https://www.linkedin.com/in/amit-tiwari-77576248/","https://twitter.com/statnativ","https://github.com/statnativ"]
+    
+  }
+</script>
 
-<p><strong>Increased scalability:</strong> Quantization allows the large-size model to be more scalable without increasing resource requirements. This enables the deployment of the model on various platforms, including hardware-constrained devices.</p>
 
-<p><strong>Lower latency</strong>: Quantization helps reduce latency in real-time applications. Since the model processes information more quickly using low-precision operations, it’s perfect for situations where speed is crucial, like in self-driving cars or language translation.</p>]]></content><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Transformers</title><link href="http://localhost:4000/transformers/" rel="alternate" type="text/html" title="Transformers" /><published>2025-01-02T00:00:00+05:30</published><updated>2025-01-02T00:00:00+05:30</updated><id>http://localhost:4000/transformers</id><content type="html" xml:base="http://localhost:4000/transformers/"><![CDATA[<hr />
-<p>title: Transformers
-date: 2024-01-02 12:00:00
-categories:[AI, Text Processing]
-tags: [ML, AI, GenAI]
-author: “Dev”
-—</p>
 
-<p><img src="/assets/images/attention_research.png" alt="Attention Research" /></p>
 
-<p><strong><em>Text Generation with Transformers: Fine-Tuning for Specific Tasks</em></strong></p>
 
-<p>Transformers have revolutionized Natural Language Processing (NLP), achieving state-of-the-art results in various tasks, including text generation. Unlike recurrent neural networks (RNNs), transformers process entire sequences in parallel, enabling them to capture long-range dependencies more effectively. This blog post dives into fine-tuning a pre-trained transformer model for a specific text generation task.</p>
 
-<p><strong>What are Transformers?</strong></p>
 
-<p>At their core, transformers rely on the mechanism of <em>self-attention</em>. Self-attention allows the model to weigh the importance of different words in a sentence when processing 1 a particular word. This helps the model understand the context and relationships between words.  </p>
+<!-- end _includes/seo.html -->
 
-<p><a href="https://hackernews-kappa.vercel.app/best/35977891">1. hackernews-kappa.vercel.app</a></p>
 
-<p><a href="https://hackernews-kappa.vercel.app/best/35977891">hackernews-kappa.vercel.app</a></p>
 
-<p>DeepSeek’s transformer architecture introduced several key innovations that differentiate it from standard transformer models like those used in GPT series. Here are the main architectural differences:</p>
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Statnativ Feed">
 
-<ol>
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Statnativ
+          <span class="site-subtitle">Daily insights on AI, Systems, and Scaling Real-World Products</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/newsletter/">Newsletter</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
   <li>
-    <p><strong>Multi-Query Attention (MQA)</strong>: Instead of using multiple sets of key and value projections per attention head (as in multi-head attention), DeepSeek uses a shared key and value projection across all heads while maintaining separate query projections. This significantly reduces computational requirements and memory usage while maintaining performance.</p>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
   </li>
-  <li>
-    <p><strong>RoPE (Rotary Positional Embedding)</strong>: DeepSeek employs rotary positional embeddings instead of absolute or learned positional embeddings. RoPE encodes position information directly into the attention computation through a rotation matrix, which helps the model better understand relative positions and extends more effectively to sequences longer than those seen during training.</p>
-  </li>
-  <li>
-    <p><strong>Grouped-Query Attention (GQA)</strong>: An intermediate approach between multi-head and multi-query attention where key and value projections are shared among groups of attention heads rather than completely shared or completely separate. This offers a balance between computational efficiency and representational power.</p>
-  </li>
-  <li>
-    <p><strong>SwiGLU Activation</strong>: DeepSeek uses SwiGLU activation functions in the feed-forward networks instead of traditional ReLU or GELU activations. SwiGLU combines gating mechanisms with swish activations to improve gradient flow and model capacity.</p>
-  </li>
-  <li>
-    <p><strong>Normalization Placement</strong>: DeepSeek implements “pre-normalization” where layer normalization is applied before the self-attention and feed-forward blocks rather than after them. This pre-norm design helps stabilize training for very deep models.</p>
-  </li>
-  <li>
-    <p><strong>Parallel Structure</strong>: The model uses a parallel structure where the residual connections bypass both the attention and feed-forward blocks in parallel rather than in series, which can improve gradient flow during training.</p>
-  </li>
-  <li>
-    <p><strong>Larger Context Windows</strong>: DeepSeek models were trained with significantly larger context windows than earlier models, enabling them to process and reason over much longer sequences of text.</p>
-  </li>
-</ol>
+-->
+    </ul>
+  </div>
+</div>
 
-<p>These architectural choices collectively allow DeepSeek models to achieve high performance while maintaining computational efficiency, especially for long-context reasoning tasks.</p>
+  
+  </div>
 
-<p><strong>Why Fine-Tuning?</strong></p>
 
-<p>Pre-trained transformer models, like BERT, GPT, and RoBERTa, have learned rich language representations from massive datasets. Fine-tuning these models on a smaller, task-specific dataset allows us to adapt their knowledge to our specific needs without training from scratch, which is computationally expensive and requires vast amounts of data.</p>
 
-<p><strong>Fine-Tuning for Text Generation: A Practical Example</strong></p>
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
+    <meta itemprop="description" content="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs">
+    <meta itemprop="datePublished" content="2024-02-15T00:00:00+05:30">
+    
 
-<p>Let’s consider the task of generating creative text, specifically short poems. We will use the <code class="language-plaintext highlighter-rouge">transformers</code> library from Hugging Face, which provides easy access to pre-trained models and fine-tuning tools.</p>
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs
+</h1>
+          
 
-<p><strong>1. Installation:</strong></p>
+  <p class="page__meta">
+    
 
-<p>First, install the necessary libraries:</p>
+    
 
-<p>Bash</p>
+    
+      
+      
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install transformers datasets accelerate
-</code></pre></div></div>
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
 
-<p><strong>2. Loading a Pre-trained Model and Tokenizer:</strong></p>
 
-<p>We’ll use GPT-2 as our base model:</p>
+        </header>
+      
 
-<p>Python</p>
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</a><ul><li><a href="#1-problem-statement">1. Problem Statement</a></li><li><a href="#2-solution--approach">2. Solution / Approach</a></li><li><a href="#3-code--implementation">3. Code / Implementation</a><ul><li><a href="#installation--setup">Installation &amp; Setup</a></li><li><a href="#basic-hnsw-index-construction">Basic HNSW Index Construction</a></li><li><a href="#complete-implementation">Complete Implementation</a></li></ul></li><li><a href="#4-pros-and-cons">4. Pros and Cons</a></li><li><a href="#5-key-takeaways">5. Key Takeaways</a></li><li><a href="#6-future-improvements">6. Future Improvements</a></li><li><a href="#-checklist">✅ Checklist</a></li></ul></li></ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from transformers import GPT2LMHeadModel, GPT2Tokenizer
-</code></pre></div></div>
-
-<p><strong>3. Preparing the Dataset:</strong></p>
-
-<p>For this example, let’s assume you have a text file (<code class="language-plaintext highlighter-rouge">poems.txt</code>) where each line is a short poem. You’ll need to tokenize the text:</p>
-
-<p>Python</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from datasets import load_dataset
-</code></pre></div></div>
-
-<p><strong>4. Fine-Tuning the Model:</strong></p>
-
-<p>Now comes the core part: fine-tuning. We’ll use the <code class="language-plaintext highlighter-rouge">Trainer</code> class from the <code class="language-plaintext highlighter-rouge">transformers</code> library:</p>
-
-<p>Python</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from transformers import TrainingArguments, Trainer
-</code></pre></div></div>
-
-<p><strong>5. Generating Text:</strong></p>
-
-<p>After fine-tuning, you can generate new poems:</p>
-
-<p>Python</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prompt = "The moon shines bright,"
-</code></pre></div></div>
-
-<p><strong>Key Parameters for Generation:</strong></p>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">max_length</code>: The maximum length of the generated text.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">num_return_sequences</code>: The number of different sequences to generate.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">temperature</code>: Controls the randomness of the generation. Lower values (e.g., 0.2) make the output more deterministic, while higher values (e.g., 1.0) make it more creative.</p>
-  </li>
-</ul>
-
-<p><strong>Conclusion:</strong></p>
-
-<p>Fine-tuning transformers is a powerful technique for adapting pre-trained models to specific text generation tasks. By using the <code class="language-plaintext highlighter-rouge">transformers</code> library, you can easily experiment with different models and datasets to achieve impressive results. Remember to adjust the hyperparameters and training arguments to optimize for your specific use case. This blog post provides a basic introduction; further exploration of advanced techniques like beam search and different decoding strategies can further enhance your text generation capabilities.</p>]]></content><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><summary type="html"><![CDATA[title: Transformers date: 2024-01-02 12:00:00 categories:[AI, Text Processing] tags: [ML, AI, GenAI] author: “Dev” —]]></summary></entry><entry><title type="html">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</title><link href="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/" rel="alternate" type="text/html" title="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs" /><published>2024-02-15T00:00:00+05:30</published><updated>2024-02-15T00:00:00+05:30</updated><id>http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs</id><content type="html" xml:base="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/"><![CDATA[<h1 id="hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</h1>
+            </nav>
+          </aside>
+        
+        <h1 id="hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</h1>
 
 <h2 id="1-problem-statement">1. Problem Statement</h2>
 <ul>
@@ -408,4 +479,236 @@ author: “Dev”
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Takeaways section summarized</li>
 </ul>
 
-<p><em>Note: Remember to replace <code class="language-plaintext highlighter-rouge">your_groq_api_key</code> with your actual API key and ensure you have sufficient quota for embeddings generation.</em></p>]]></content><author><name>StatNativ Team</name></author><category term="machine-learning" /><category term="ann" /><category term="vector-search" /><category term="algorithms" /><summary type="html"><![CDATA[HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs]]></summary></entry></feed>
+<p><em>Note: Remember to replace <code class="language-plaintext highlighter-rouge">your_groq_api_key</code> with your actual API key and ensure you have sufficient quota for embeddings generation.</em></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#algorithms" class="page__taxonomy-item" rel="tag">algorithms</a><span class="sep">, </span>
+    
+      <a href="/tags/#ann" class="page__taxonomy-item" rel="tag">ann</a><span class="sep">, </span>
+    
+      <a href="/tags/#vector-search" class="page__taxonomy-item" rel="tag">vector-search</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#machine-learning" class="page__taxonomy-item" rel="tag">machine-learning</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-02-15T00:00:00+05:30">February 15, 2024</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=statnativ&text=HNSW%3A+Fast+Approximate+Nearest+Neighbors+with+Hierarchical+Graphs%20http%3A%2F%2Flocalhost%3A4000%2Fmachine-learning%2Fhnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fmachine-learning%2Fhnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fmachine-learning%2Fhnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/transformers/" class="pagination--pager" title="Transformers
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Quantization/" rel="permalink">Quantization
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/transformers/" rel="permalink">Transformers
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+
+
+title: Transformers
+date: 2024-01-02 12:00:00
+categories:[AI, Text Processing]
+tags: [ML, AI, GenAI]
+author: “Dev”
+—
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://www.linkedin.com/in/amit-tiwari-77576248/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/statnativ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/statnativ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Amit Tiwari. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

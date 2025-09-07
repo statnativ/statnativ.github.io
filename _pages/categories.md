@@ -111,4 +111,9 @@ author_profile: true
     <div class="category-name">Agentic AI</div>
   </a>
 
+  <a href="/categories/finetuning" class="category-card">
+    <img src="/assets/images/categories/finetuning.jpg" alt="Finetuning">
+    <div class="category-name">Finetuning</div>
+  </a>
+
 </div>
