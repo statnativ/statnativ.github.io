@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-08T01:10:10+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Statnativ</title><subtitle>Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.</subtitle><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><entry><title type="html">Quantization</title><link href="http://localhost:4000/Quantization/" rel="alternate" type="text/html" title="Quantization" /><published>2025-03-02T00:00:00+05:30</published><updated>2025-03-02T00:00:00+05:30</updated><id>http://localhost:4000/Quantization</id><content type="html" xml:base="http://localhost:4000/Quantization/"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-08T01:16:44+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Statnativ</title><subtitle>Welcome to Statnativ – Exploring the Intersection of AI, Development, and Systems. We dive deep into AI fundamentals, system design, LLMOps, RAG &amp; Agentic AI, and real-world challenges in scaling products.</subtitle><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><entry><title type="html">Quantization</title><link href="http://localhost:4000/Quantization/" rel="alternate" type="text/html" title="Quantization" /><published>2025-03-02T00:00:00+05:30</published><updated>2025-03-02T00:00:00+05:30</updated><id>http://localhost:4000/Quantization</id><content type="html" xml:base="http://localhost:4000/Quantization/"><![CDATA[<hr />
 <p>Title: Quantization
 date: 2024-01-02 12:00:00
 categories:[AI, Text Processing, Quantization]
@@ -218,47 +218,7 @@ author: “Dev”
 
 <p><strong>Conclusion:</strong></p>
 
-<p>Fine-tuning transformers is a powerful technique for adapting pre-trained models to specific text generation tasks. By using the <code class="language-plaintext highlighter-rouge">transformers</code> library, you can easily experiment with different models and datasets to achieve impressive results. Remember to adjust the hyperparameters and training arguments to optimize for your specific use case. This blog post provides a basic introduction; further exploration of advanced techniques like beam search and different decoding strategies can further enhance your text generation capabilities.</p>]]></content><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><summary type="html"><![CDATA[title: Transformers date: 2024-01-02 12:00:00 categories:[AI, Text Processing] tags: [ML, AI, GenAI] author: “Dev” —]]></summary></entry><entry><title type="html">Testing Enhanced Jekyll Script with GitHub Push</title><link href="http://localhost:4000/automation/blogging/testing-enhanced-jekyll-script-with-github-push/" rel="alternate" type="text/html" title="Testing Enhanced Jekyll Script with GitHub Push" /><published>2024-09-07T00:00:00+05:30</published><updated>2024-09-07T00:00:00+05:30</updated><id>http://localhost:4000/automation/blogging/testing-enhanced-jekyll-script-with-github-push</id><content type="html" xml:base="http://localhost:4000/automation/blogging/testing-enhanced-jekyll-script-with-github-push/"><![CDATA[<h1 id="test-github-push-feature">Test GitHub Push Feature</h1>
-
-<p>This is a test blog post to demonstrate the enhanced Jekyll processing script with automatic GitHub push functionality.</p>
-
-<h2 id="features-tested">Features Tested</h2>
-
-<ul>
-  <li>✅ <strong>Automatic metadata extraction</strong> from custom format</li>
-  <li>✅ <strong>Jekyll frontmatter generation</strong> with proper YAML structure</li>
-  <li>✅ <strong>Tag and category organization</strong> for better navigation</li>
-  <li>✅ <strong>GitHub integration</strong> with automatic commit and push</li>
-  <li>✅ <strong>Content preservation</strong> while cleaning metadata blocks</li>
-</ul>
-
-<h2 id="how-it-works">How It Works</h2>
-
-<ol>
-  <li><strong>Processing</strong>: The script automatically extracts metadata from the custom format</li>
-  <li><strong>Validation</strong>: Ensures all required fields are present</li>
-  <li><strong>Conversion</strong>: Creates proper Jekyll post with frontmatter</li>
-  <li><strong>Organization</strong>: Updates tag and category systems</li>
-  <li><strong>GitHub Push</strong>: Commits changes and pushes to remote repository</li>
-</ol>
-
-<h2 id="code-example">Code Example</h2>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Run the enhanced script with GitHub push</span>
-<span class="n">ruby</span> <span class="n">process_posts_enhanced</span><span class="p">.</span><span class="nf">rb</span> <span class="o">-</span><span class="nb">p</span>
-
-<span class="c1"># Interactive mode with GitHub push</span>
-<span class="n">ruby</span> <span class="n">process_posts_enhanced</span><span class="p">.</span><span class="nf">rb</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="nb">p</span>
-
-<span class="c1"># Check git setup</span>
-<span class="n">ruby</span> <span class="n">process_posts_enhanced</span><span class="p">.</span><span class="nf">rb</span> <span class="o">-</span><span class="n">g</span>
-</code></pre></div></div>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>This enhanced script streamlines the entire blog publishing workflow from markdown processing to live deployment on GitHub Pages.</p>
-
-<p>🚀 <strong>Automated with Claude Code</strong></p>]]></content><author><name>StatNativ Team</name></author><category term="automation" /><category term="blogging" /><category term="jekyll" /><category term="github" /><category term="automation" /><category term="claude-code" /><summary type="html"><![CDATA[Test GitHub Push Feature]]></summary></entry><entry><title type="html">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</title><link href="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/" rel="alternate" type="text/html" title="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs" /><published>2024-02-15T00:00:00+05:30</published><updated>2024-02-15T00:00:00+05:30</updated><id>http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs</id><content type="html" xml:base="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/"><![CDATA[<h1 id="hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</h1>
+<p>Fine-tuning transformers is a powerful technique for adapting pre-trained models to specific text generation tasks. By using the <code class="language-plaintext highlighter-rouge">transformers</code> library, you can easily experiment with different models and datasets to achieve impressive results. Remember to adjust the hyperparameters and training arguments to optimize for your specific use case. This blog post provides a basic introduction; further exploration of advanced techniques like beam search and different decoding strategies can further enhance your text generation capabilities.</p>]]></content><author><name>Amit Tiwari</name><email>statnativ@gmail.com</email></author><summary type="html"><![CDATA[title: Transformers date: 2024-01-02 12:00:00 categories:[AI, Text Processing] tags: [ML, AI, GenAI] author: “Dev” —]]></summary></entry><entry><title type="html">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</title><link href="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/" rel="alternate" type="text/html" title="HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs" /><published>2024-02-15T00:00:00+05:30</published><updated>2024-02-15T00:00:00+05:30</updated><id>http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs</id><content type="html" xml:base="http://localhost:4000/machine-learning/hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs/"><![CDATA[<h1 id="hnsw-fast-approximate-nearest-neighbors-with-hierarchical-graphs">HNSW: Fast Approximate Nearest Neighbors with Hierarchical Graphs</h1>
 
 <h2 id="1-problem-statement">1. Problem Statement</h2>
 <ul>
