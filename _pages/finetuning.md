@@ -3,7 +3,6 @@ title: "Finetuning"
 layout: category
 permalink: /categories/finetuning/
 taxonomy: finetuning
-author_profile: true
 ---
 
 # Finetuning

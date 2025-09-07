@@ -2,7 +2,6 @@
 permalink: /categories/ai-fundamentals/
 title: "AI Fundamentals"
 layout: single
-author_profile: true
 ---
 
 <div style="text-align: center; padding: 3rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin-bottom: 3rem; border-radius: 1rem;">
