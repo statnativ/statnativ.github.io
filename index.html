@@ -803,6 +803,43 @@
       box-shadow: none;
     }
 
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success.active {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-success h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .form-success p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .form-wrapper {
+      display: block;
+    }
+
+    .form-wrapper.hidden {
+      display: none;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       .hero h1 {
@@ -1166,42 +1203,53 @@
         <h2>Get in Touch</h2>
         <p>Tell us about your GCC requirements and we'll get back to you shortly.</p>
       </div>
-      <form id="contactForm" action="https://formspree.io/f/xovapgko" method="POST">
-        <div class="form-group">
-          <label for="name">Full Name *</label>
-          <input type="text" id="name" name="name" required placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email" required placeholder="john@company.com">
-        </div>
-        <div class="form-group">
-          <label for="company">Company Name</label>
-          <input type="text" id="company" name="company" placeholder="Your Company">
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
-        </div>
-        <div class="form-group">
-          <label for="interest">Area of Interest</label>
-          <select id="interest" name="interest">
-            <option value="">Select an option</option>
-            <option value="gcc-setup">GCC Setup & Build</option>
-            <option value="talent-acquisition">Talent Acquisition</option>
-            <option value="engineering">Engineering Services</option>
-            <option value="business-ops">Business Operations</option>
-            <option value="governance">Governance & Risk</option>
-            <option value="continuous-improvement">Continuous Improvement</option>
-            <option value="general">General Inquiry</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message *</label>
-          <textarea id="message" name="message" required placeholder="Tell us about your requirements..."></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
+      <div class="form-wrapper">
+        <form id="contactForm" action="https://formspree.io/f/xovapgko" method="POST">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" name="company" placeholder="Your Company">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label for="interest">Area of Interest</label>
+            <select id="interest" name="interest">
+              <option value="">Select an option</option>
+              <option value="gcc-setup">GCC Setup & Build</option>
+              <option value="talent-acquisition">Talent Acquisition</option>
+              <option value="engineering">Engineering Services</option>
+              <option value="business-ops">Business Operations</option>
+              <option value="governance">Governance & Risk</option>
+              <option value="continuous-improvement">Continuous Improvement</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your requirements..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✓</div>
+        <h3>Message Sent Successfully!</h3>
+        <p>Thank you for reaching out. Your message has been sent to our team.<br>Someone will get back to you
+          shortly.
+        </p>
+        <button onclick="closeContactForm()" class="btn-primary"
+          style="cursor: pointer; border: 2px solid var(--accent);">Close</button>
+      </div>
     </div>
   </div>
 
@@ -1256,12 +1304,6 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function closeContactForm() {
-      const modal = document.getElementById('contactModal');
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
     // Close modal when clicking outside
     document.getElementById('contactModal').addEventListener('click', function (e) {
       if (e.target === this) {
@@ -1277,11 +1319,54 @@
     });
 
     // Form submission handling
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
       const submitBtn = this.querySelector('.form-submit');
+      const formData = new FormData(this);
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
+
+      try {
+        const response = await fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show success message
+          document.querySelector('.form-wrapper').classList.add('hidden');
+          document.getElementById('formSuccess').classList.add('active');
+          this.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        alert('There was a problem sending your message. Please try again or email us directly at statnativ@gmail.com');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
     });
+
+    // Reset form when modal closes
+    function closeContactForm() {
+      const modal = document.getElementById('contactModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Reset form and success message
+      setTimeout(() => {
+        document.querySelector('.form-wrapper').classList.remove('hidden');
+        document.getElementById('formSuccess').classList.remove('active');
+        document.getElementById('contactForm').reset();
+        const submitBtn = document.querySelector('.form-submit');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }, 300);
+    }
   </script>
 </body>
 
