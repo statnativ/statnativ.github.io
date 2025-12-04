@@ -78,12 +78,38 @@
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .logo-name {
       font-family: 'DM Serif Display', serif;
       font-size: 1.8rem;
       font-weight: 400;
       color: var(--primary);
-      text-decoration: none;
       letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .nav-links {
@@ -624,26 +650,40 @@
       }
     }
 
-        @media (max-width: 768px) {
-          .nav-container {
-            padding: 1rem 1.5rem;
-          }
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 1rem 1.5rem;
+      }
 
-          .nav-links {
-            display: none;
-          }
+      .logo-img {
+        height: 40px;
+      }
 
-          .mobile-menu-btn {
-            display: block;
-          }
+      .logo-name {
+        font-size: 1.4rem;
+      }
 
-          .modal-content {
-            padding: 2rem 1.5rem;
-          }
+      .logo-tagline {
+        font-size: 0.6rem;
+      }
 
-          .locations-grid {
-            grid-template-columns: 1fr;
-          }      .hero {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
         padding-top: 100px;
       }
 
@@ -715,14 +755,21 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="#" class="logo">Statnativ</a>
+      <a href="#" class="logo">
+        <img src="logo.jpg" alt="Statnativ Logo" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-name">Statnativ</span>
+          <span class="logo-tagline">Engineering Global Success from India</span>
+        </div>
+      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#why">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button onclick="openContactForm()" class="cta-button" style="cursor: pointer; border: 2px solid var(--accent);">Get Started</button>
+      <button onclick="openContactForm()" class="cta-button"
+        style="cursor: pointer; border: 2px solid var(--accent);">Get Started</button>
       <button class="mobile-menu-btn">☰</button>
     </div>
   </nav>
@@ -731,13 +778,14 @@
   <section class="hero">
     <div class="hero-container">
       <div class="hero-content">
-        <div class="hero-badge">Global Capability Center Experts</div>
+        <div class="hero-badge">Engineering Global Success from India</div>
         <h1>Building Global Capability Centers. Accelerating Enterprise Transformation.</h1>
         <p class="hero-subtitle">Partner with Statnativ to establish, scale, and operate high-performance GCCs
           in India. From strategy to execution, we transform your vision into a strategic asset.</p>
         <div class="hero-buttons">
           <a href="#services" class="btn-primary">Explore Services</a>
-          <button onclick="openContactForm()" class="btn-secondary" style="cursor: pointer;">Schedule Consultation</button>
+          <button onclick="openContactForm()" class="btn-secondary" style="cursor: pointer;">Schedule
+            Consultation</button>
         </div>
       </div>
     </div>
@@ -934,7 +982,8 @@
           <h3>Delhi NCR</h3>
         </div>
       </div>
-      <button onclick="openContactForm()" class="btn-primary" style="margin-top: 3rem; cursor: pointer; border: 2px solid var(--accent);">Start a Conversation</button>
+      <button onclick="openContactForm()" class="btn-primary"
+        style="margin-top: 3rem; cursor: pointer; border: 2px solid var(--accent);">Start a Conversation</button>
     </div>
   </section>
 
@@ -1043,21 +1092,21 @@
     }
 
     // Close modal when clicking outside
-    document.getElementById('contactModal').addEventListener('click', function(e) {
+    document.getElementById('contactModal').addEventListener('click', function (e) {
       if (e.target === this) {
         closeContactForm();
       }
     });
 
     // Close modal on escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeContactForm();
       }
     });
 
     // Form submission handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
       const submitBtn = this.querySelector('.form-submit');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
