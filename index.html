@@ -624,20 +624,26 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .nav-container {
-        padding: 1rem 1.5rem;
-      }
+        @media (max-width: 768px) {
+          .nav-container {
+            padding: 1rem 1.5rem;
+          }
 
-      .nav-links {
-        display: none;
-      }
+          .nav-links {
+            display: none;
+          }
 
-      .mobile-menu-btn {
-        display: block;
-      }
+          .mobile-menu-btn {
+            display: block;
+          }
 
-      .hero {
+          .modal-content {
+            padding: 2rem 1.5rem;
+          }
+
+          .locations-grid {
+            grid-template-columns: 1fr;
+          }      .hero {
         padding-top: 100px;
       }
 
@@ -716,7 +722,7 @@
         <li><a href="#why">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#contact" class="cta-button">Get Started</a>
+      <button onclick="openContactForm()" class="cta-button" style="cursor: pointer; border: 2px solid var(--accent);">Get Started</button>
       <button class="mobile-menu-btn">☰</button>
     </div>
   </nav>
@@ -731,7 +737,7 @@
           in India. From strategy to execution, we transform your vision into a strategic asset.</p>
         <div class="hero-buttons">
           <a href="#services" class="btn-primary">Explore Services</a>
-          <a href="#contact" class="btn-secondary">Schedule Consultation</a>
+          <button onclick="openContactForm()" class="btn-secondary" style="cursor: pointer;">Schedule Consultation</button>
         </div>
       </div>
     </div>
@@ -902,13 +908,82 @@
           <a href="https://statnativ.com" target="_blank">statnativ.com</a>
         </div>
         <div class="contact-item">
-          <strong>Location</strong>
-          <span>Bangalore, India</span>
+          <strong>Locations</strong>
+          <span>India</span>
         </div>
       </div>
-      <a href="mailto:contact@statnativ.com" class="btn-primary">Start a Conversation</a>
+      <div class="locations-grid fade-in">
+        <div class="location-card">
+          <div class="location-icon">📍</div>
+          <h3>Bengaluru</h3>
+        </div>
+        <div class="location-card">
+          <div class="location-icon">📍</div>
+          <h3>Hyderabad</h3>
+        </div>
+        <div class="location-card">
+          <div class="location-icon">📍</div>
+          <h3>Pune</h3>
+        </div>
+        <div class="location-card">
+          <div class="location-icon">📍</div>
+          <h3>Chennai</h3>
+        </div>
+        <div class="location-card">
+          <div class="location-icon">📍</div>
+          <h3>Delhi NCR</h3>
+        </div>
+      </div>
+      <button onclick="openContactForm()" class="btn-primary" style="margin-top: 3rem; cursor: pointer; border: 2px solid var(--accent);">Start a Conversation</button>
     </div>
   </section>
+
+  <!-- Contact Form Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeContactForm()">&times;</button>
+      <div class="modal-header">
+        <h2>Get in Touch</h2>
+        <p>Tell us about your GCC requirements and we'll get back to you shortly.</p>
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/xovapgko" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company" placeholder="Your Company">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+        </div>
+        <div class="form-group">
+          <label for="interest">Area of Interest</label>
+          <select id="interest" name="interest">
+            <option value="">Select an option</option>
+            <option value="gcc-setup">GCC Setup & Build</option>
+            <option value="talent-acquisition">Talent Acquisition</option>
+            <option value="engineering">Engineering Services</option>
+            <option value="business-ops">Business Operations</option>
+            <option value="governance">Governance & Risk</option>
+            <option value="continuous-improvement">Continuous Improvement</option>
+            <option value="general">General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Tell us about your requirements..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -952,6 +1027,40 @@
 
     mobileMenuBtn.addEventListener('click', () => {
       navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Contact Form Modal Functions
+    function openContactForm() {
+      const modal = document.getElementById('contactModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactForm() {
+      const modal = document.getElementById('contactModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeContactForm();
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeContactForm();
+      }
+    });
+
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      const submitBtn = this.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
     });
   </script>
 </body>
